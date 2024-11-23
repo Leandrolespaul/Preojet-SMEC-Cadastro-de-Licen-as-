@@ -1,4 +1,25 @@
 
+function verificarCpf(cpf) {
+  const botaoCadastrar = document.getElementById("btnCadastrar")
+  const mensagemErro = document.getElementById("mensagem-erro");
+  axios.get("http://localhost:3002/funcionarios").then((response) => {
+  cpf = document.getElementById("cpf").value
+  console.log(response.data)
+  const existe = response.data.find(funcionario => funcionario.cpf === cpf)
+    if(existe) {
+      
+      mensagemErro.textContent = "CPF já existe."
+     return  botaoCadastrar.disabled = true
+      
+    } else {
+      mensagemErro.textContent = "";
+    }
+    
+      
+    
+  })
+
+}
 
 
 const filtrarFuncionarios = () => {
@@ -106,6 +127,7 @@ celular.addEventListener("input", () => {
 
 
 const btnEnviarCadastro = () => {
+
   const mensagemErro = document.getElementById("mensagem-erro");
 
   const nome = document.getElementById("nome").value;
@@ -173,11 +195,15 @@ const btnEnviarCadastro = () => {
   location.reload()
 };
 
+
 let funcionarios = []
+
+
 
 const carregarFuncionarios = () => {
   axios.get("http://localhost:3002/funcionarios").then((response) => {
     funcionarios = response.data
+    
     let adicionar = "";
     response.data.forEach((dado) => {
       adicionar += `
@@ -202,7 +228,6 @@ const carregarFuncionarios = () => {
           <td><button title="Para editar preencha os campos acima" id="btnAtualizar" class="btn btn-secondary btn-sm" onclick="btnAtualizar(${dado.id})"><img class=img-deletar src="/src/imagens/user_ok.png"></button></td>
           <td><button title="Atualizar Funcionário" type="button" class="btn btn-secondary btn-sm" onclick="btnEnviarAtualizacao()"><img class=img-deletar src="/src/imagens/user.png"></button></td>
           <td><button title="Para deletar clique aqui!" id="btnDeletar" class="btn btn-secondary btn-sm" onclick=btnDeletar(${dado.id})><img class=img-deletar src="/src/imagens/user_delete.png"></button></td>
-
           </tr>
       `
     });

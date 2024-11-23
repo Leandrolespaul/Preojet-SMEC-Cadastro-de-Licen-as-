@@ -21,9 +21,12 @@ app.get('/funcionarios', (req, res) => {
     res.send(funcionarios)
 })
 
-app.post('/funcionarios', (req, res) => {
+app.post('/funcionarios',  (req, res) => {
     cadastroFuncionarios(req.body.nome, req.body.dataNascimento, req.body.telefone, req.body.cpf, req.body.cidade, req.body.estado, req.body.logradouro, req.body.bairro, req.body.numero, req.body.matricula, req.body.regimeSuplementar, req.body.localRes, req.body.lotacao, req.body.cargo, req.body.admissaoMatricula, req.body.email)
     res.send('Funcionario cadastrado com sucesso!')
+
+ 
+      
 })
 
 app.put('/funcionarios/:id', (req, res) => {
