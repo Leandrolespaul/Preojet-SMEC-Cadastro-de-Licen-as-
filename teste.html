@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Edição</title>
+    <style>
+        /* Esconde o formulário por padrão */
+        #formulario {
+            display: none;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exemplo de Edição</h1>
+    <button id="botaoEditar">Editar</button>
+
+    <div id="formulario">
+        <h2>Editar Informações</h2>
+        <form>
+            <label for="nome">Nome:</label><br>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome"><br><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" placeholder="Digite seu email"><br><br>
+            <button type="submit">Salvar</button>
+            <button type="button" id="botaoCancelar">Cancelar</button>
+        </form>
+    </div>
+
+    <script>
+        // Obtém os elementos
+        const botaoEditar = document.getElementById('botaoEditar');
+        const formulario = document.getElementById('formulario');
+        const botaoCancelar = document.getElementById('botaoCancelar');
+
+        // Mostra o formulário ao clicar no botão "Editar"
+        botaoEditar.addEventListener('click', () => {
+            formulario.style.display = 'block';
+        });
+
+        // Esconde o formulário ao clicar no botão "Cancelar"
+        botaoCancelar.addEventListener('click', () => {
+            formulario.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

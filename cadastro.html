@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="index.html">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/4.1.0/cdn.min.js" integrity="sha512-bz58Sg3BAWMEMPTH0B8+pK/+5Qfqq6b2Ho2G4ld12x4fiUVqpY8jSbN/73qpBQYFLU4QnKVL5knUm4uqcJGLVw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="/main.js" defer></script>
+    <script src="./cadastro.js" defer></script>
+   
+    
+    <title>Dados:</title>
+  </head>
+  <header>
+    <div class="p-3 mb-2 bg-dark text-white">
+      <p class="text-light bg-dark">
+        <div class="d-flex justify-content-center">
+  </div>
+    <p></p>
+    <div class="d-flex justify-content-center">
+    <h2 class="subtitulo_header">Dados Cadastrais:</h2>
+    </div>
+  </header>
+  <body>
+    <p></p>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start" style="width: 100px;">
+
+      <a href="/index.html">
+      <button title="Home" type="button" class="btn btn-secondary btn-sm" >
+        <img class="home" src="./src/imagens/home.png">
+      </button>
+      </a>
+      <input type="text" id="pesquisar" placeholder="pesquisar nome..." onkeyup="filtrarFuncionarios()" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" style="width: 300px;">
+    </div>
+    <div class="d-flex justify-content-center">
+      <h2>Funcionários Cadastrados:</h2>
+    </div>
+
+  <div id="dados">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Data de Nascimento</th>
+          <th scope="col">Telefone</th>
+          <th scope="col">CPF</th>
+          <th scope="col">Cidade</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Endereço</th>
+          <th scope="col">Bairro</th>
+          <th scope="col">Numero</th>
+          <th scope="col">Matrícula</th>
+          <th scope="col">Data de Admissão da Matrícula</th>
+          <th scope="col">E-mail</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Salvar</th>
+          <th scope="col">Deletar</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div> 
+  <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+  <form id="formulario" style="display: none;">
+    <div id="div-formulario">
+    <div class="input-group input-group-sm mb-3">
+      <input type="hidden" id="id" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+    </div>
+    <div class="input-group input-group-sm mb-3">
+    <span title="Nome" class="input-group-text" id="inputGroup-sizing-sm">Nome</span>
+    <input type="text" id="nome" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+  </div>
+  <p></p>
+  <div class="input-group input-group-sm mb-3">
+    <span title="Data de Nascimento" class="input-group-text" id="inputGroup-sizing-sm">Data de Nascimento</span>
+    <input type="date" id="data" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+  </div>
+  <p></p>
+  <div class="input-group input-group-sm mb-3">
+    <span title="Telefone" class="input-group-text" id="inputGroup-sizing-sm">Telefone</span>
+    <input type="text" id="telefone" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+  </div>
+  <div class="input-group input-group-sm mb-3">
+    <span title="cpf" class="input-group-text" id="inputGroup-sizing-sm">CPF</span>
+    <input maxlength="14"  oninput="mascaraCpf()" type="text" id="cpf" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+  </div>
+  <div class="input-group input-group-sm mb-3">
+    <span title="Cidade" class="input-group-text" id="inputGroup-sizing-sm">Cidade</span>
+    <input type="text" id="cidade" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+  </div>
+  <div class="input-group input-group-sm mb-3">
+    <span title="Cidade" class="input-group-text" id="inputGroup-sizing-sm">Estado</span>
+    <select id="estado" title="estado" class="form-select" id="inputGroup-sizing-sm">
+      <option value="">Selecione</option>
+      <option value="AC">Acre</option>
+      <option value="AL">Alagoas</option>
+      <option value="AP">Amapá</option>
+      <option value="AM">Amazonas</option>
+      <option value="BA">Bahia</option>
+      <option value="CE">Ceará</option>
+      <option value="DF">Distrito Federal</option>
+      <option value="ES">Espirito Santo</option>
+      <option value="GO">Goiás</option>
+      <option value="MA">Maranhão</option>
+      <option value="MS">Mato Grosso do Sul</option>
+      <option value="MT">Mato Grosso</option>
+      <option value="MG">Minas Gerais</option>
+      <option value="PA">Pará</option>
+      <option value="PB">Paraíba</option>
+      <option value="PR">Paraná</option>
+      <option value="PE">Pernambuco</option>
+      <option value="PI">Piauí</option>
+      <option value="RJ">Rio de Janeiro</option>
+      <option value="RN">Rio Grande do Norte</option>
+      <option value="RS">Rio Grande do Sul</option>
+      <option value="RO">Rondônia</option>
+      <option value="RR">Roraima</option>
+      <option value="SC">Santa Catarina</option>
+      <option value="SP">São Paulo</option>
+      <option value="SE">Sergipe</option>
+      <option value="TO">Tocantins</option>
+    </select>
+  </div>
+  <div class="input-group input-group-sm mb-3">
+    <span title="Logradouro" class="input-group-text" id="inputGroup-sizing-sm">Endereço</span>
+    <input type="text" id="logradouro" placeholder="Rua... Avenida..." class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+  </div>
+  <div class="input-group input-group-sm mb-3">
+    <span title="Bairro" class="input-group-text" id="inputGroup-sizing-sm">Bairro</span>
+    <input type="text" id="bairro" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+  </div>
+  <div class="input-group input-group-sm mb-3">
+    <span title="Numero" class="input-group-text" id="inputGroup-sizing-sm">Numero</span>
+    <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '')" id="numero" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+  </div>
+  <div class="input-group input-group-sm mb-3">
+    <span title="Matricula" class="input-group-text" id="inputGroup-sizing-sm">Matrícula</span>
+    <input maxlength="10" type="text" id="matricula" oninput="mascaraMatricula()" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+  </div>
+  <div class="input-group input-group-sm mb-3">
+    <span title="Admissão da Matrícula" class="input-group-text" id="inputGroup-sizing-sm">Data de Admissão da Matrícula</span>
+    <input type="date" id="admissaoMatricula" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+  </div>
+    <div class="input-group input-group-sm mb-3">
+    <span title="E-mail" class="input-group-text" id="inputGroup-sizing-sm">E-mail</span>
+    <input type="email" placeholder="exemplo@exemplo.com" id="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+  </div>
+  <p class="text-danger" id="mensagem-erro"></p>
+  <div>
+  </div> <p></p>
+</div>
+</form>
+</div>
+  </body>
+  
