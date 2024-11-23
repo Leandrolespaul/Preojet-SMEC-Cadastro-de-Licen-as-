@@ -55,6 +55,8 @@
           <th scope="col">Bairro</th>
           <th scope="col">Numero</th>
           <th scope="col">Matrícula</th>
+          <th scope="col">Res</th>
+          <th scope="col">Local Res</th>
           <th scope="col">Local de Trabalho</th>
           <th scope="col">Cargo</th>
           <th scope="col">Data de Admissão da Matrícula</th>
@@ -144,6 +146,58 @@
   <div class="input-group input-group-sm mb-3">
     <span title="Matricula" class="input-group-text" id="inputGroup-sizing-sm">Matrícula</span>
     <input maxlength="10" type="text" id="matricula" oninput="mascaraMatricula()" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+    <div class="input-group input-group-sm mb-3">
+      <span title="res" class="input-group-text" id="inputGroup-sizing-sm">Regime Suplementar (RES)</span>
+      <select oninput="resDesaparecer()" id="res" title="res" class="form-select" id="inputGroup-sizing-sm">
+        <option value="Selecione">Selecione</option>
+        <option value="Sim">Sim</option>
+        <option value="Não">Não</option>
+      </select>
+    </div>
+
+    <div class="input-group input-group-sm mb-3">
+      <span title="local-res" class="input-group-text" id="local-trabalho-res">Local de Trabalho (RES)</span>
+      <select id="local-res" title="local-res" class="form-select" id="inputGroup-sizing-sm">
+        <option value="">Selecione</option>
+        <option value="SMEC">Secretaria Municipal de Educação</option>
+        <option value="E.E.M. Monsenhor Ivo Sante Donim">E.E.M. Monsenhor Ivo Sante Donim</option>
+        <option value="E.M. Carolina Nunes de Almeida">E.M. Carolina Nunes de Almeida</option>
+        <option value="E.E.M. Dona Mariana">E.E.M. Dona Mariana</option>
+      </select>
+    </div>
+
+    <div class="input-group input-group-sm mb-3">
+      <span title="Lotacao" class="input-group-text" id="inputGroup-sizing-sm">Local de Trabalho</span>
+      <select id="lotacao" title="lotacao" class="form-select" id="inputGroup-sizing-sm">
+        <option value="">Selecione</option>
+        <option value="SMEC">Secretaria Municipal de Educação</option>
+        <option value="E.E.M. Monsenhor Ivo Sante Donim">E.E.M. Monsenhor Ivo Sante Donim</option>
+        <option value="E.M. Carolina Nunes de Almeida">E.M. Carolina Nunes de Almeida</option>
+        <option value="E.E.M. Dona Mariana">E.E.M. Dona Mariana</option>
+      </select>
+    </div>
+
+  <div class="input-group input-group-sm mb-3">
+    <span title="Cargo" class="input-group-text" id="inputGroup-sizing-sm">Cargo</span>
+    <select id="cargo" title="cargo" class="form-select" id="inputGroup-sizing-sm">
+      <option value="">Selecione</option>
+      <option value="Secretário(a)">Secrtário(a)</option>
+      <option value="Assessor de Gabinete">Assessor de Gabinete</option>
+      <option value="Diretor(a)">Diretor(a)</option>
+      <option value="Professor I">Professor I</option>
+      <option value="Professor II">Professor II</option>
+      <option value="Auxiliar de Creche">Auxiliar de Creche</option>
+      <option value="Auxiliar de Educ. Infantil">Auxiiar de Educação Infantil / Mediador Educação Especial</option>
+      <option value="Coordenador de Turno">Coordenador de Turno</option>
+      <option value="Merendeira">Merendeira</option>
+      <option value="Aux. de Serviços Gerais">Auxiliar de Serviços Gerais</option>
+      <option value="Diretor do Departamento de Pessoal">Diretor de Departamento Pessoal</option>
+      <option value="Orientador Pedagógico">Orientador Pedagógico</option>
+      <option value="Psicopedagogo(a)">Psicopedagogo(a)</option>
+      <option value="Auxiliar Administrativo">Auxiliar Administrativo</option>
+      <option value="Técnico Pedagogico">Técnico Pedagogico</option>
+      <option value="Nutricionista">Nutricionista</option>  
+    </select>
   </div>
   <div class="input-group input-group-sm mb-3">
     <span title="Admissão da Matrícula" class="input-group-text" id="inputGroup-sizing-sm">Data de Admissão da Matrícula</span>

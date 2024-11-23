@@ -114,6 +114,8 @@ const btnEnviarCadastro = () => {
   const bairro = document.getElementById("bairro").value;
   const numero = document.getElementById("numero").value;
   const matricula = document.getElementById("matricula").value;
+  const regimeSuplementar = document.getElementById("res").value;
+  const localRes = document.getElementById("local-res").value;
   const lotacao =  document.getElementById("lotacao").value
   const cargo =  document.getElementById("cargo").value
   const admissaoMatricula = document.getElementById("admissaoMatricula").value;
@@ -136,6 +138,8 @@ const btnEnviarCadastro = () => {
       bairro: bairro,
       numero: numero,
       matricula: matricula,
+      regimeSuplementar: regimeSuplementar,
+      localRes: localRes,
       lotacao: lotacao,
       cargo: cargo,
       admissaoMatricula: admissaoMatricula,
@@ -152,6 +156,8 @@ const btnEnviarCadastro = () => {
       document.getElementById("bairro").value = "";
       document.getElementById("numero").value = "";
       document.getElementById("matricula").value = "";
+      document.getElementById("res").value = ""
+      document.getElementById("local-res").value = ""   
       document.getElementById("lotacao").value = "";
       document.getElementById("cargo").value = "";
       document.getElementById("admissaoMatricula").value = "";
@@ -183,6 +189,8 @@ const carregarFuncionarios = () => {
           <td>${primeiraLetraMaiuscula(dado.bairro)}</td>
           <td>${dado.numero}</td>
           <td>${dado.matricula}</td>
+          <td>${dado.regimeSuplementar}</td>
+          <td>${dado.localRes}</td>
           <td>${dado.lotacao}</td>
           <td>${dado.cargo}</td>
           <td>${formatDate(dado.admissaoMatricula)}</td>
@@ -215,6 +223,8 @@ const btnAtualizar = (id) => {
   document.getElementById("bairro").value = encontrarFuncionario.bairro
   document.getElementById("numero").value = encontrarFuncionario.numero
   document.getElementById("matricula").value = encontrarFuncionario.matricula
+  document.getElementById("res").value = encontrarFuncionario.regimeSuplementar
+  document.getElementById("local-res").value = encontrarFuncionario.localRes
   document.getElementById("lotacao").value = encontrarFuncionario.lotacao
   document.getElementById("cargo").value = encontrarFuncionario.cargo
   document.getElementById("admissaoMatricula").value = encontrarFuncionario.admissaoMatricula
@@ -233,6 +243,8 @@ const btnEnviarAtualizacao = () => {
   const bairro = document.getElementById("bairro").value;
   const numero = document.getElementById("numero").value;
   const matricula = document.getElementById("matricula").value;
+  const regimeSuplementar = document.getElementById("res").value
+  const localRes = document.getElementById("local-res").value 
   const lotacao =  document.getElementById("lotacao").value
   const cargo = document.getElementById("cargo").value
   const admissaoMatricula = document.getElementById("admissaoMatricula").value;
@@ -250,6 +262,8 @@ const btnEnviarAtualizacao = () => {
       bairro,
       numero,
       matricula,
+      regimeSuplementar,
+      localRes,
       lotacao,
       cargo,
       admissaoMatricula,
@@ -267,6 +281,8 @@ const btnEnviarAtualizacao = () => {
       document.getElementById("bairro").value = ""
       document.getElementById("numero").value = ""
       document.getElementById("matricula").value = ""
+      document.getElementById("res").value = ""
+      document.getElementById("local-res").value = ""
       document.getElementById("lotacao").value = ""
       document.getElementById("cargo").value = "";
       document.getElementById("admissaoMatricula").value = ""
@@ -305,6 +321,20 @@ const diasNãoAparecer = () => {
     return document.getElementById("dias").style.display = "block";
   }
   document.getElementById("dias").style.display = "none";
+
+}
+document.getElementById("local-trabalho-res").style.display = "none"
+document.getElementById("local-res").style.display = "none";
+const resDesaparecer = () => {
+  const regimeSuplementar = document.getElementById("res").value
+  if(regimeSuplementar === "Sim") {
+    return document.getElementById("local-trabalho-res").style.display = "block", 
+    document.getElementById("local-res").style.display = "block";
+  }
+  
+  return document.getElementById("local-trabalho-res").style.display = "none", 
+  document.getElementById("local-res").style.display = "none";
+
 
 }
 
