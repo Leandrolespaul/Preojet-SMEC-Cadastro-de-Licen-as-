@@ -276,10 +276,18 @@ const btnDeletar = (id) => {
 };
 
 const dataFinalNaoAparecer = () => {
+  const dias = document.getElementById("dias").value
+  if(dias === "") {
+    return document.getElementById("data-final").style.display = "block";
+  }
   document.getElementById("data-final").style.display = "none";
 }
 
 const diasNãoAparecer = () => {
+  const dataFinal = document.getElementById("data-final").value
+  if(dataFinal === "") {
+    return document.getElementById("dias").style.display = "block";
+  }
   document.getElementById("dias").style.display = "none";
 
 }
@@ -289,6 +297,8 @@ const calculoDataLicenca = () => {
   const matricula = document.getElementById("matricula-data").value
   const dias = document.getElementById("dias").value
   const dataFinal = document.getElementById("data-final").value
+
+  
 
   axios.get("http://localhost:3002/funcionarios").then((response) => {
     const encontrarFuncionarios = response.data.find(funcionario => funcionario.matricula === matricula)
