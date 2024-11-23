@@ -114,10 +114,12 @@ const btnEnviarCadastro = () => {
   const bairro = document.getElementById("bairro").value;
   const numero = document.getElementById("numero").value;
   const matricula = document.getElementById("matricula").value;
+  const lotacao =  document.getElementById("lotacao").value
+  const cargo =  document.getElementById("cargo").value
   const admissaoMatricula = document.getElementById("admissaoMatricula").value;
   const email = document.getElementById("email").value;
 
-  if (!nome || !dataNascimento || !telefone || !cpf || !cidade || !estado || !logradouro || !bairro || !numero || !matricula || !admissaoMatricula) {
+  if (!nome || !dataNascimento || !telefone || !cpf || !cidade || !estado || !logradouro || !bairro || !numero || !matricula || !lotacao || !cargo || !admissaoMatricula) {
     mensagemErro.textContent = "Preencha todos os campos, por favor.";
     return false;
   }
@@ -134,6 +136,8 @@ const btnEnviarCadastro = () => {
       bairro: bairro,
       numero: numero,
       matricula: matricula,
+      lotacao: lotacao,
+      cargo: cargo,
       admissaoMatricula: admissaoMatricula,
       email: email
     })
@@ -148,6 +152,8 @@ const btnEnviarCadastro = () => {
       document.getElementById("bairro").value = "";
       document.getElementById("numero").value = "";
       document.getElementById("matricula").value = "";
+      document.getElementById("lotacao").value = "";
+      document.getElementById("cargo").value = "";
       document.getElementById("admissaoMatricula").value = "";
       document.getElementById("email").value = "";
     })
@@ -177,6 +183,8 @@ const carregarFuncionarios = () => {
           <td>${primeiraLetraMaiuscula(dado.bairro)}</td>
           <td>${dado.numero}</td>
           <td>${dado.matricula}</td>
+          <td>${dado.lotacao}</td>
+          <td>${dado.cargo}</td>
           <td>${formatDate(dado.admissaoMatricula)}</td>
           <td>${dado.email}</td>
           <td><button title="Para editar preencha os campos acima" id="btnAtualizar" class="btn btn-secondary btn-sm" onclick="btnAtualizar(${dado.id})"><img class=img-deletar src="/src/imagens/user_ok.png"></button></td>
@@ -207,6 +215,8 @@ const btnAtualizar = (id) => {
   document.getElementById("bairro").value = encontrarFuncionario.bairro
   document.getElementById("numero").value = encontrarFuncionario.numero
   document.getElementById("matricula").value = encontrarFuncionario.matricula
+  document.getElementById("lotacao").value = encontrarFuncionario.lotacao
+  document.getElementById("cargo").value = encontrarFuncionario.cargo
   document.getElementById("admissaoMatricula").value = encontrarFuncionario.admissaoMatricula
   document.getElementById("email").value = encontrarFuncionario.email
 };
@@ -223,6 +233,8 @@ const btnEnviarAtualizacao = () => {
   const bairro = document.getElementById("bairro").value;
   const numero = document.getElementById("numero").value;
   const matricula = document.getElementById("matricula").value;
+  const lotacao =  document.getElementById("lotacao").value
+  const cargo = document.getElementById("cargo").value
   const admissaoMatricula = document.getElementById("admissaoMatricula").value;
   const email = document.getElementById("email").value;
 
@@ -238,6 +250,8 @@ const btnEnviarAtualizacao = () => {
       bairro,
       numero,
       matricula,
+      lotacao,
+      cargo,
       admissaoMatricula,
       email
     })
@@ -253,6 +267,8 @@ const btnEnviarAtualizacao = () => {
       document.getElementById("bairro").value = ""
       document.getElementById("numero").value = ""
       document.getElementById("matricula").value = ""
+      document.getElementById("lotacao").value = ""
+      document.getElementById("cargo").value = "";
       document.getElementById("admissaoMatricula").value = ""
       document.getElementById("email").value = ""
       carregarFuncionarios()
