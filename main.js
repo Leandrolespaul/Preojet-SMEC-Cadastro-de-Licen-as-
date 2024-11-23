@@ -308,6 +308,8 @@ const diasNãoAparecer = () => {
 
 }
 
+
+
 const calculoDataLicenca = () => {
   const dataInicial = document.getElementById("data-inicial").value
   const matricula = document.getElementById("matricula-data").value
