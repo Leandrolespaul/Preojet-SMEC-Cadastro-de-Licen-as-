@@ -51,6 +51,10 @@ const mascaraMatricula = () => {
   matricula.value = matricula.value.replace(/(\d{2})(\d)/, "$1.$2")
     .replace(/(\d{2})(\d)/, "$1.$2")
 
+  const matriculaCalcular = document.getElementById("matricula-data")
+  matriculaCalcular.value = matriculaCalcular.value.replace(/\D/g, "")
+  matriculaCalcular.value = matriculaCalcular.value.replace(/(\d{2})(\d)/, "$1.$2")
+    .replace(/(\d{2})(\d)/, "$1.$2")
 }
 
 const validaCPF = (cpf) => {
@@ -116,8 +120,8 @@ const btnEnviarCadastro = () => {
   const matricula = document.getElementById("matricula").value;
   const regimeSuplementar = document.getElementById("res").value;
   const localRes = document.getElementById("local-res").value;
-  const lotacao =  document.getElementById("lotacao").value
-  const cargo =  document.getElementById("cargo").value
+  const lotacao = document.getElementById("lotacao").value
+  const cargo = document.getElementById("cargo").value
   const admissaoMatricula = document.getElementById("admissaoMatricula").value;
   const email = document.getElementById("email").value;
 
@@ -157,7 +161,7 @@ const btnEnviarCadastro = () => {
       document.getElementById("numero").value = "";
       document.getElementById("matricula").value = "";
       document.getElementById("res").value = ""
-      document.getElementById("local-res").value = ""   
+      document.getElementById("local-res").value = ""
       document.getElementById("lotacao").value = "";
       document.getElementById("cargo").value = "";
       document.getElementById("admissaoMatricula").value = "";
@@ -244,8 +248,8 @@ const btnEnviarAtualizacao = () => {
   const numero = document.getElementById("numero").value;
   const matricula = document.getElementById("matricula").value;
   const regimeSuplementar = document.getElementById("res").value
-  const localRes = document.getElementById("local-res").value 
-  const lotacao =  document.getElementById("lotacao").value
+  const localRes = document.getElementById("local-res").value
+  const lotacao = document.getElementById("lotacao").value
   const cargo = document.getElementById("cargo").value
   const admissaoMatricula = document.getElementById("admissaoMatricula").value;
   const email = document.getElementById("email").value;
@@ -309,31 +313,34 @@ const btnDeletar = (id) => {
 
 const dataFinalNaoAparecer = () => {
   const dias = document.getElementById("dias").value
-  if(dias === "") {
-    return document.getElementById("data-final").style.display = "block";
+  if (dias === "") {
+    return document.getElementById("data-final").style.display = "block",
+      document.getElementById("data-final-span").style.display = "block"
   }
+  document.getElementById("data-final-span").style.display = "none"
   document.getElementById("data-final").style.display = "none";
 }
 
 const diasNãoAparecer = () => {
   const dataFinal = document.getElementById("data-final").value
-  if(dataFinal === "") {
-    return document.getElementById("dias").style.display = "block";
-  }
-  document.getElementById("dias").style.display = "none";
+  if (dataFinal === "") {
+    return document.getElementById("dias").style.display = "block"
 
+  }
+  document.getElementById("dias-span").style.display = "none"
+  document.getElementById("dias").style.display = "none";
 }
 document.getElementById("local-trabalho-res").style.display = "none"
 document.getElementById("local-res").style.display = "none";
 const resDesaparecer = () => {
   const regimeSuplementar = document.getElementById("res").value
-  if(regimeSuplementar === "Sim") {
-    return document.getElementById("local-trabalho-res").style.display = "block", 
-    document.getElementById("local-res").style.display = "block";
+  if (regimeSuplementar === "Sim") {
+    return document.getElementById("local-trabalho-res").style.display = "block",
+      document.getElementById("local-res").style.display = "block";
   }
-  
-  return document.getElementById("local-trabalho-res").style.display = "none", 
-  document.getElementById("local-res").style.display = "none";
+
+  return document.getElementById("local-trabalho-res").style.display = "none",
+    document.getElementById("local-res").style.display = "none";
 
 
 }
@@ -346,7 +353,7 @@ const calculoDataLicenca = () => {
   const dias = document.getElementById("dias").value
   const dataFinal = document.getElementById("data-final").value
 
-  
+
 
   axios.get("http://localhost:3002/funcionarios").then((response) => {
     const encontrarFuncionarios = response.data.find(funcionario => funcionario.matricula === matricula)
@@ -383,7 +390,9 @@ const calculoDataLicenca = () => {
   document.getElementById("matricula-data").value = ""
   document.getElementById("dias").value = ""
   document.getElementById("data-final").value = ""
+  document.getElementById("data-final-span").style.display = "none"
   document.getElementById("data-final").style.display = "block";
   document.getElementById("dias").style.display = "block";
+  document.getElementById("dias-span").style.display = "block";
 }
 
