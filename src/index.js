@@ -12,8 +12,8 @@ const funcionarios = []
 let cont = 1
 const id = () => cont++
 
-const cadastroFuncionarios = (nome, dataNascimento, telefone, cpf, cidade, estado, logradouro, bairro, numero, matricula, regimeSuplementar, localRes, lotacao, cargo, admissaoMatricula, email) => {
-    funcionarios.push({id: id(), nome, dataNascimento, telefone, cpf, cidade, estado, logradouro, bairro, numero, matricula, regimeSuplementar, localRes, lotacao, cargo, admissaoMatricula, email})
+const cadastroFuncionarios = (nome, dataNascimento, telefone, cpf, cidade, estado, logradouro, bairro, numero, matricula, lotacao, regimeSuplementar, localRes,  cargo, admissaoMatricula, email) => {
+    funcionarios.push({id: id(), nome, dataNascimento, telefone, cpf, cidade, estado, logradouro, bairro, numero, matricula, lotacao, regimeSuplementar, localRes,  cargo, admissaoMatricula, email})
 }
 
 
@@ -22,7 +22,7 @@ app.get('/funcionarios', (req, res) => {
 })
 
 app.post('/funcionarios',  (req, res) => {
-    cadastroFuncionarios(req.body.nome, req.body.dataNascimento, req.body.telefone, req.body.cpf, req.body.cidade, req.body.estado, req.body.logradouro, req.body.bairro, req.body.numero, req.body.matricula, req.body.regimeSuplementar, req.body.localRes, req.body.lotacao, req.body.cargo, req.body.admissaoMatricula, req.body.email)
+    cadastroFuncionarios(req.body.nome, req.body.dataNascimento, req.body.telefone, req.body.cpf, req.body.cidade, req.body.estado, req.body.logradouro, req.body.bairro, req.body.numero, req.body.matricula, req.body.lotacao, req.body.regimeSuplementar, req.body.localRes, req.body.cargo, req.body.admissaoMatricula, req.body.email)
     res.send('Funcionario cadastrado com sucesso!')
 
  
@@ -41,9 +41,9 @@ app.put('/funcionarios/:id', (req, res) => {
     if(encontrarFuncionario) encontrarFuncionario.bairro = req.body.bairro
     if(encontrarFuncionario) encontrarFuncionario.numero = req.body.numero
     if(encontrarFuncionario) encontrarFuncionario.matricula = req.body.matricula
+    if(encontrarFuncionario) encontrarFuncionario.lotacao = req.body.lotacao
     if(encontrarFuncionario) encontrarFuncionario.regimeSuplementar = req.body.regimeSuplementar
     if(encontrarFuncionario) encontrarFuncionario.localRes = req.body.localRes
-    if(encontrarFuncionario) encontrarFuncionario.lotacao = req.body.lotacao
     if(encontrarFuncionario) encontrarFuncionario.cargo = req.body.cargo
     if(encontrarFuncionario) encontrarFuncionario.admissaoMatricula = req.body.admissaoMatricula
     if(encontrarFuncionario) encontrarFuncionario.email = req.body.email

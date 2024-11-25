@@ -1,24 +1,59 @@
 
-function verificarCpf(cpf) {
+const mascaraCid = () => {
+  document.getElementById('cid').addEventListener('input', function (e) {
+    let value = e.target.value.toUpperCase(); // Converte para maiúsculo
+    value = value.replace(/[^A-Z0-9]/g, ''); // Remove caracteres não permitidos (letras e números apenas)
+    
+    // Aplica o formato CID (1 letra, 2 dígitos, 1 ponto e 1 dígito)
+    if (value.length > 3) {
+      value = value.slice(0, 3) + '.' + value.slice(3, 4);
+    }
+    if (value.length > 6) {
+      value = value.slice(0, 6); // Limita o tamanho máximo
+    }
+    
+    e.target.value = value;
+  });
+}
+
+
+
+
+
+const verificarCpf = (cpf) => {
   const botaoCadastrar = document.getElementById("btnCadastrar")
   const mensagemErro = document.getElementById("mensagem-erro");
   axios.get("http://localhost:3002/funcionarios").then((response) => {
-  cpf = document.getElementById("cpf").value
-  console.log(response.data)
-  const existe = response.data.find(funcionario => funcionario.cpf === cpf)
-    if(existe) {
-      
-      mensagemErro.textContent = "CPF já existe."
-     return  botaoCadastrar.disabled = true
-      
+    cpf = document.getElementById("cpf").value
+    
+    const existe = response.data.find(funcionario => funcionario.cpf === cpf)
+    if (existe) {
+
+      mensagemErro.textContent = "CPF já cadastrado."
+      return botaoCadastrar.disabled = true
+
     } else {
       mensagemErro.textContent = "";
     }
-    
-      
-    
   })
+}
 
+const verificarMatricula = (matricula) => {
+  const botaoCadastrar = document.getElementById("btnCadastrar")
+  const mensagemErro = document.getElementById("mensagem-erro");
+  axios.get("http://localhost:3002/funcionarios").then((response) => {
+    matricula = document.getElementById("matricula").value
+    
+    const existe = response.data.find(funcionario => funcionario.matricula === matricula)
+    if (existe) {
+
+      mensagemErro.textContent = "Matrícuta já cadastrada!."
+      return botaoCadastrar.disabled = true
+
+    } else {
+      mensagemErro.textContent = "";
+    }
+  })
 }
 
 
@@ -80,7 +115,7 @@ const mascaraMatricula = () => {
 
 const validaCPF = (cpf) => {
   const botaoCadastrar = document.getElementById("btnCadastrar")
-  const mensagemErro = document.getElementById("mensagem-erro");
+  
   cpf = document.getElementById("cpf").value
   cpf = cpf.replace(/\D+/g, '');
 
@@ -97,9 +132,11 @@ const validaCPF = (cpf) => {
   resto = (soma * 10) % 11;
   if ((resto === 10) || (resto === 11)) resto = 0;
   if (resto !== parseInt(cpf.substring(10, 11))) return botaoCadastrar.disabled = true
-
+  
   return botaoCadastrar.disabled = false
+
 }
+
 
 
 
@@ -140,9 +177,9 @@ const btnEnviarCadastro = () => {
   const bairro = document.getElementById("bairro").value;
   const numero = document.getElementById("numero").value;
   const matricula = document.getElementById("matricula").value;
+  const lotacao = document.getElementById("lotacao").value
   const regimeSuplementar = document.getElementById("res").value;
   const localRes = document.getElementById("local-res").value;
-  const lotacao = document.getElementById("lotacao").value
   const cargo = document.getElementById("cargo").value
   const admissaoMatricula = document.getElementById("admissaoMatricula").value;
   const email = document.getElementById("email").value;
@@ -151,6 +188,8 @@ const btnEnviarCadastro = () => {
     mensagemErro.textContent = "Preencha todos os campos, por favor.";
     return false;
   }
+
+  
 
   axios
     .post("http://localhost:3002/funcionarios", {
@@ -164,9 +203,9 @@ const btnEnviarCadastro = () => {
       bairro: bairro,
       numero: numero,
       matricula: matricula,
+      lotacao: lotacao,
       regimeSuplementar: regimeSuplementar,
       localRes: localRes,
-      lotacao: lotacao,
       cargo: cargo,
       admissaoMatricula: admissaoMatricula,
       email: email
@@ -182,9 +221,9 @@ const btnEnviarCadastro = () => {
       document.getElementById("bairro").value = "";
       document.getElementById("numero").value = "";
       document.getElementById("matricula").value = "";
+      document.getElementById("lotacao").value = "";
       document.getElementById("res").value = ""
       document.getElementById("local-res").value = ""
-      document.getElementById("lotacao").value = "";
       document.getElementById("cargo").value = "";
       document.getElementById("admissaoMatricula").value = "";
       document.getElementById("email").value = "";
@@ -198,12 +237,10 @@ const btnEnviarCadastro = () => {
 
 let funcionarios = []
 
-
-
 const carregarFuncionarios = () => {
   axios.get("http://localhost:3002/funcionarios").then((response) => {
     funcionarios = response.data
-    
+
     let adicionar = "";
     response.data.forEach((dado) => {
       adicionar += `
@@ -219,9 +256,9 @@ const carregarFuncionarios = () => {
           <td>${primeiraLetraMaiuscula(dado.bairro)}</td>
           <td>${dado.numero}</td>
           <td>${dado.matricula}</td>
+          <td>${dado.lotacao}</td>
           <td>${dado.regimeSuplementar}</td>
           <td>${dado.localRes}</td>
-          <td>${dado.lotacao}</td>
           <td>${dado.cargo}</td>
           <td>${formatDate(dado.admissaoMatricula)}</td>
           <td>${dado.email}</td>
@@ -252,9 +289,9 @@ const btnAtualizar = (id) => {
   document.getElementById("bairro").value = encontrarFuncionario.bairro
   document.getElementById("numero").value = encontrarFuncionario.numero
   document.getElementById("matricula").value = encontrarFuncionario.matricula
+  document.getElementById("lotacao").value = encontrarFuncionario.lotacao
   document.getElementById("res").value = encontrarFuncionario.regimeSuplementar
   document.getElementById("local-res").value = encontrarFuncionario.localRes
-  document.getElementById("lotacao").value = encontrarFuncionario.lotacao
   document.getElementById("cargo").value = encontrarFuncionario.cargo
   document.getElementById("admissaoMatricula").value = encontrarFuncionario.admissaoMatricula
   document.getElementById("email").value = encontrarFuncionario.email
@@ -272,9 +309,9 @@ const btnEnviarAtualizacao = () => {
   const bairro = document.getElementById("bairro").value;
   const numero = document.getElementById("numero").value;
   const matricula = document.getElementById("matricula").value;
+  const lotacao = document.getElementById("lotacao").value
   const regimeSuplementar = document.getElementById("res").value
   const localRes = document.getElementById("local-res").value
-  const lotacao = document.getElementById("lotacao").value
   const cargo = document.getElementById("cargo").value
   const admissaoMatricula = document.getElementById("admissaoMatricula").value;
   const email = document.getElementById("email").value;
@@ -291,9 +328,9 @@ const btnEnviarAtualizacao = () => {
       bairro,
       numero,
       matricula,
+      lotacao,
       regimeSuplementar,
       localRes,
-      lotacao,
       cargo,
       admissaoMatricula,
       email
@@ -310,9 +347,9 @@ const btnEnviarAtualizacao = () => {
       document.getElementById("bairro").value = ""
       document.getElementById("numero").value = ""
       document.getElementById("matricula").value = ""
+      document.getElementById("lotacao").value = ""
       document.getElementById("res").value = ""
       document.getElementById("local-res").value = ""
-      document.getElementById("lotacao").value = ""
       document.getElementById("cargo").value = "";
       document.getElementById("admissaoMatricula").value = ""
       document.getElementById("email").value = ""
@@ -381,13 +418,34 @@ const calculoDataLicenca = () => {
 
 
   axios.get("http://localhost:3002/funcionarios").then((response) => {
+    const tipoLicenca = document.getElementById("tipo-licenca").value
+    const cid = document.getElementById("cid").value
     const encontrarFuncionarios = response.data.find(funcionario => funcionario.matricula === matricula)
     if (encontrarFuncionarios) {
       if (dataInicial && dias) {
 
         const calculoEntreDataInicialEDias = dateFns.addDays(new Date(dataInicial), parseInt(dias));
+        const dataInicialFormat = dateFns.format(new Date(dataInicial), 'dd/MM/yyyy')
         const result = dateFns.format(new Date(calculoEntreDataInicialEDias), 'dd/MM/yyyy')
-        return document.getElementById("div-mostrar-calculo").innerText = `O Funcionário ${primeiraLetraMaiuscula(encontrarFuncionarios.nome)}, na matrícula ${encontrarFuncionarios.matricula}, tem ${dias} dias, sua licença irá ate a data de ${result}.`
+        const tabela = `
+        <tr>
+            <td>${encontrarFuncionarios.id}</td>
+            <td>${primeiraLetraMaiuscula(encontrarFuncionarios.nome)}</td>
+            <td>${encontrarFuncionarios.matricula}</td>
+            <td>${tipoLicenca}</td>
+            <td>${cid}</td>
+            <td>${dataInicialFormat}</td>
+            <td>${dias}</td>
+            <td>${result}</td>
+            <td><button class="btn btn-secondary btn-sm"><img class=img-deletar src="/src/imagens/user_ok.png"></button></td>
+            <td><button class="btn btn-secondary btn-sm"><img class=img-deletar src="/src/imagens/user.png"></button></td>
+            <td><button class="btn btn-secondary btn-sm"><img class=img-deletar src="/src/imagens/user_delete.png"></button></td>
+
+        </tr>
+            
+        `
+        console.log(tabela)
+        document.querySelector("#dados-licenca tbody").innerHTML = tabela;
       }
       if (dataInicial && dataFinal) {
         const calculoEntreDatas = dateFns.differenceInDays(new Date(dataFinal), new Date(dataInicial))
@@ -415,7 +473,7 @@ const calculoDataLicenca = () => {
   document.getElementById("matricula-data").value = ""
   document.getElementById("dias").value = ""
   document.getElementById("data-final").value = ""
-  document.getElementById("data-final-span").style.display = "none"
+  document.getElementById("data-final-span").style.display = "block"
   document.getElementById("data-final").style.display = "block";
   document.getElementById("dias").style.display = "block";
   document.getElementById("dias-span").style.display = "block";

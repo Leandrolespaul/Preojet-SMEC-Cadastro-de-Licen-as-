@@ -55,9 +55,9 @@
           <th scope="col">Bairro</th>
           <th scope="col">Numero</th>
           <th scope="col">Matrícula</th>
+          <th scope="col">Local de Trabalho</th>
           <th scope="col">Res</th>
           <th scope="col">Local Res</th>
-          <th scope="col">Local de Trabalho</th>
           <th scope="col">Cargo</th>
           <th scope="col">Data de Admissão da Matrícula</th>
           <th scope="col">E-mail</th>
@@ -77,17 +77,17 @@
       <input type="hidden" id="id" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
     </div>
     <div class="input-group input-group-sm mb-3">
-    <span title="Nome" class="input-group-text" id="inputGroup-sizing-sm">Nome</span>
+    <span title="nome" class="input-group-text" id="inputGroup-sizing-sm">Nome</span>
     <input type="text" id="nome" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
   </div>
   <p></p>
   <div class="input-group input-group-sm mb-3">
-    <span title="Data de Nascimento" class="input-group-text" id="inputGroup-sizing-sm">Data de Nascimento</span>
+    <span title="data de nascimento" class="input-group-text" id="inputGroup-sizing-sm">Data de Nascimento</span>
     <input type="date" id="data" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
   </div>
   <p></p>
   <div class="input-group input-group-sm mb-3">
-    <span title="Telefone" class="input-group-text" id="inputGroup-sizing-sm">Telefone</span>
+    <span title="telefone" class="input-group-text" id="inputGroup-sizing-sm">Telefone</span>
     <input type="text" id="telefone" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
   </div>
   <div class="input-group input-group-sm mb-3">
@@ -95,11 +95,11 @@
     <input maxlength="14"  oninput="mascaraCpf()" type="text" id="cpf" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
   </div>
   <div class="input-group input-group-sm mb-3">
-    <span title="Cidade" class="input-group-text" id="inputGroup-sizing-sm">Cidade</span>
+    <span title="cidade" class="input-group-text" id="inputGroup-sizing-sm">Cidade</span>
     <input type="text" id="cidade" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
   </div>
   <div class="input-group input-group-sm mb-3">
-    <span title="Cidade" class="input-group-text" id="inputGroup-sizing-sm">Estado</span>
+    <span title="estado" class="input-group-text" id="inputGroup-sizing-sm">Estado</span>
     <select id="estado" title="estado" class="form-select" id="inputGroup-sizing-sm">
       <option value="">Selecione</option>
       <option value="AC">Acre</option>
@@ -147,6 +147,18 @@
     <span title="Matricula" class="input-group-text" id="inputGroup-sizing-sm">Matrícula</span>
     <input maxlength="10" type="text" id="matricula" oninput="mascaraMatricula()" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
     <div class="input-group input-group-sm mb-3">
+
+      <div class="input-group input-group-sm mb-3">
+        <span title="Lotacao" class="input-group-text" id="inputGroup-sizing-sm">Local de Trabalho</span>
+        <select id="lotacao" title="lotacao" class="form-select" id="inputGroup-sizing-sm">
+          <option value="">Selecione</option>
+          <option value="SMEC">Secretaria Municipal de Educação</option>
+          <option value="E.E.M. Monsenhor Ivo Sante Donim">E.E.M. Monsenhor Ivo Sante Donim</option>
+          <option value="E.M. Carolina Nunes de Almeida">E.M. Carolina Nunes de Almeida</option>
+          <option value="E.E.M. Dona Mariana">E.E.M. Dona Mariana</option>
+        </select>
+      </div>
+
       <span title="res" class="input-group-text" id="inputGroup-sizing-sm">Regime Suplementar (RES)</span>
       <select oninput="resDesaparecer()" id="res" title="res" class="form-select" id="inputGroup-sizing-sm">
         <option value="Selecione">Selecione</option>
@@ -158,17 +170,6 @@
     <div class="input-group input-group-sm mb-3">
       <span title="local-res" class="input-group-text" id="local-trabalho-res">Local de Trabalho (RES)</span>
       <select id="local-res" title="local-res" class="form-select" id="inputGroup-sizing-sm">
-        <option value="">Selecione</option>
-        <option value="SMEC">Secretaria Municipal de Educação</option>
-        <option value="E.E.M. Monsenhor Ivo Sante Donim">E.E.M. Monsenhor Ivo Sante Donim</option>
-        <option value="E.M. Carolina Nunes de Almeida">E.M. Carolina Nunes de Almeida</option>
-        <option value="E.E.M. Dona Mariana">E.E.M. Dona Mariana</option>
-      </select>
-    </div>
-
-    <div class="input-group input-group-sm mb-3">
-      <span title="Lotacao" class="input-group-text" id="inputGroup-sizing-sm">Local de Trabalho</span>
-      <select id="lotacao" title="lotacao" class="form-select" id="inputGroup-sizing-sm">
         <option value="">Selecione</option>
         <option value="SMEC">Secretaria Municipal de Educação</option>
         <option value="E.E.M. Monsenhor Ivo Sante Donim">E.E.M. Monsenhor Ivo Sante Donim</option>
